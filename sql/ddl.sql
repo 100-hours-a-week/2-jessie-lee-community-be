@@ -3,7 +3,7 @@ USE jessie_community;
 drop table if exists member CASCADE;
 create table member (
     id BIGINT PRIMARY KEY,
-    name varchar(255),
+    name varchar(255)
 );
 
 

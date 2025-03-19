@@ -37,13 +37,15 @@ public class JdbcTemplateCommentRepository implements CommentRepository{
 
     @Override
     public Optional<Comment> findById(Long commentId) {
-        List<Comment> result = jdbcTemplate.query("SELECT * FROM comments WHERE comment_id = ?", commentRowMapper(), commentId);
+        String sql = "SELECT * FROM comments WHERE comment_id = ?";
+        List<Comment> result = jdbcTemplate.query(sql, commentRowMapper(), commentId);
         return result.stream().findAny();
     }
 
     @Override
     public List<Comment> findByPostId(Long postId) {
-        return jdbcTemplate.query("SELECT * FROM comments WHERE post_id = ? ORDER BY created_at ASC", commentRowMapper(), postId);
+        String sql = "SELECT * FROM comments WHERE post_id = ? ORDER BY created_at ASC";
+        return jdbcTemplate.query(sql, commentRowMapper(), postId);
     }
 
     private RowMapper<Comment> commentRowMapper() {

@@ -39,25 +39,29 @@ public class JdbcTemplateUserRepository implements UserRepository{
 
     @Override
     public Optional<User> findById(Long id) {
-        List<User> result = jdbcTemplate.query("select * from users where user_id = ?", userRowMapper(), id);
+        String sql = "select * from users where user_id = ?";
+        List<User> result = jdbcTemplate.query(sql, userRowMapper(), id);
         return result.stream().findAny();
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        List<User> result = jdbcTemplate.query("select * from users where email = ?", userRowMapper(), email);
+        String sql = "select * from users where email = ?";
+        List<User> result = jdbcTemplate.query(sql, userRowMapper(), email);
         return result.stream().findAny();
     }
 
     @Override
     public Optional<User> findByNickname(String nickname) {
-        List<User> result = jdbcTemplate.query("select * from users where nickname = ?", userRowMapper(), nickname);
+        String sql = "select * from users where nickname = ?";
+        List<User> result = jdbcTemplate.query(sql, userRowMapper(), nickname);
         return result.stream().findAny();
     }
 
     @Override
     public List<User> findAll() {
-        return jdbcTemplate.query("select * from users", userRowMapper());
+        String sql = "select * from users";
+        return jdbcTemplate.query(sql, userRowMapper());
     }
 
     private RowMapper<User> userRowMapper() {

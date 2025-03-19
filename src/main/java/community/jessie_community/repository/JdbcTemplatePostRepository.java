@@ -40,13 +40,15 @@ public class JdbcTemplatePostRepository implements PostRepository{
 
     @Override
     public Optional<Post> findById(Long id) {
-        List<Post> result = jdbcTemplate.query("SELECT * FROM posts WHERE post_id = ?", postRowMapper(), id);
+        String sql = "SELECT * FROM posts WHERE post_id = ?";
+        List<Post> result = jdbcTemplate.query(sql, postRowMapper(), id);
         return result.stream().findAny();
     }
 
     @Override
     public List<Post> findAll() {
-        return jdbcTemplate.query("SELECT * FROM posts", postRowMapper());
+        String sql = "SELECT * FROM posts";
+        return jdbcTemplate.query(sql, postRowMapper());
     }
 
     private RowMapper<Post> postRowMapper() {

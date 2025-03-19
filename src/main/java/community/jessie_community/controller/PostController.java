@@ -28,4 +28,14 @@ public class PostController {
     public List<Post> postList() {
         return postService.findPosts();
     }
+
+    @GetMapping("/posts/{id}")
+    public ResponseEntity<Post> getPost(@PathVariable("id") Long id) {
+        Optional<Post> post = postService.findOne(id);
+        if (post.isPresent()) {
+            return ResponseEntity.ok(post.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }

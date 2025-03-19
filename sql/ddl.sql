@@ -16,3 +16,17 @@ CREATE TABLE users (
     nickname VARCHAR(10) NOT NULL,
     profile_img_url VARCHAR(255)
 );
+
+CREATE TABLE posts (
+    post_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    content VARCHAR(255) NOT NULL,
+    image_url VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    like_count INT DEFAULT 0,
+    view_count INT DEFAULT 0,
+    comment_count INT DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);

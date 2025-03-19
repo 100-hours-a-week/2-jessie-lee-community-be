@@ -17,7 +17,8 @@ public class PostService {
      * 게시글 등록
      */
     public Long post(Post post, Long user_id) {
-        postRepository.save(post, user_id);
+        post.setUser_id(user_id);
+        postRepository.save(post);
         return post.getId();
     }
 

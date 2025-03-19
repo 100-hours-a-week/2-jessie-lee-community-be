@@ -20,11 +20,12 @@ public class JdbcTemplatePostRepository implements PostRepository{
     }
 
     @Override
-    public Post save(Post post, Long user_id) {
+    public Post save(Post post) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
         jdbcInsert.withTableName("posts").usingGeneratedKeyColumns("post_id");
 
         Map<String, Object> parameters = new HashMap<>();
+        parameters.put("user_id", post.getUser_id());
         parameters.put("title", post.getTitle());
         parameters.put("content", post.getContent());
         parameters.put("image_url", post.getImage_url());
@@ -34,7 +35,6 @@ public class JdbcTemplatePostRepository implements PostRepository{
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
         post.setId(key.longValue());
-        post.setUser_id(user_id);
         return post;
     }
 

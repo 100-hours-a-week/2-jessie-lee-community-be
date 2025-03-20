@@ -7,7 +7,7 @@ public class UserDTO {
     private String email;
     private String password;
     private String nickname;
-    private String profile_img_url;
+    private String profileImgUrl;
 
     public Long getId() {
         return id;
@@ -41,12 +41,12 @@ public class UserDTO {
         this.nickname = nickname;
     }
 
-    public String getProfile_img_url() {
-        return profile_img_url;
+    public String getProfileImgUrl() {
+        return profileImgUrl;
     }
 
-    public void setProfile_img_url(String profile_img_url) {
-        this.profile_img_url = profile_img_url;
+    public void setProfileImgUrl(String profileImgUrl) {
+        this.profileImgUrl = profileImgUrl;
     }
 
     public static UserDTO fromEntity(User user) {
@@ -55,7 +55,7 @@ public class UserDTO {
         dto.setEmail(user.getEmail());
         dto.setPassword(user.getPassword());
         dto.setNickname(user.getNickname());
-        dto.setProfile_img_url(user.getProfileImgUrl());
+        dto.setProfileImgUrl(user.getProfileImgUrl());
 
         return dto;
     }
@@ -68,7 +68,7 @@ public class UserDTO {
         user.setEmail(dto.email);
         user.setPassword(dto.password);
         user.setNickname(dto.nickname);
-        user.setProfileImgUrl(dto.profile_img_url);
+        user.setProfileImgUrl(dto.profileImgUrl);
 
         return user;
     }

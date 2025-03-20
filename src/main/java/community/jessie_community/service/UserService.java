@@ -20,8 +20,9 @@ public class UserService {
     /**
      * 회원 가입
      */
-    public Long join(User user) {
+    public Long join(UserDTO userDTO) {
         // TODO: 중복 검사
+        User user = UserDTO.toEntity(userDTO);
         userRepository.save(user);
         return user.getId();
     }

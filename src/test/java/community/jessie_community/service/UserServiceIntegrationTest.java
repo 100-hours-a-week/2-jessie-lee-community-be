@@ -21,7 +21,7 @@ public class UserServiceIntegrationTest {
     @Test
     void 회원가입() {
         // given
-        User user = new User();
+        UserDTO user = new UserDTO();
         user.setEmail("newuser@example.com");
         user.setPassword("1234");
         user.setNickname("newuser");

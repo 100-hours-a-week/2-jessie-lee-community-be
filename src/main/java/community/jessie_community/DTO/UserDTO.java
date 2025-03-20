@@ -59,4 +59,17 @@ public class UserDTO {
 
         return dto;
     }
+
+    public static User toEntity(UserDTO dto) {
+        User user = new User();
+        if (dto.id != null) {
+            user.setId(dto.id);
+        }
+        user.setEmail(dto.email);
+        user.setPassword(dto.password);
+        user.setNickname(dto.nickname);
+        user.setProfileImgUrl(dto.profile_img_url);
+
+        return user;
+    }
 }

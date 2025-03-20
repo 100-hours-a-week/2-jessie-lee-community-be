@@ -1,5 +1,6 @@
 package community.jessie_community.service;
 
+import community.jessie_community.DTO.UserDTO;
 import community.jessie_community.domain.User;
 import community.jessie_community.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ public class UserServiceIntegrationTest {
         Long saveId = userService.join(user);
 
         // then
-        User findUser = userService.findOne(saveId).get();
+        UserDTO findUser = userService.findOneUserDTO(saveId);
         assertThat(user.getNickname()).isEqualTo(findUser.getNickname());
     }
 

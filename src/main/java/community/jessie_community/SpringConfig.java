@@ -7,17 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.sql.DataSource;
-
-
 @Configuration
 public class SpringConfig {
 
     private final UserRepository userRepository;
+    private final PostRepository postRepository;
 
     @Autowired
-    public SpringConfig(UserRepository userRepository) {
+    public SpringConfig(UserRepository userRepository, PostRepository postRepository) {
         this.userRepository = userRepository;
+        this.postRepository = postRepository;
     }
 
     @Bean
@@ -25,18 +24,8 @@ public class SpringConfig {
         return new UserService(userRepository);
     }
 
-//    @Bean
-//    public UserRepository userRepository() {
-//        return new JdbcTemplateUserRepository(dataSource);
-//    }
-//
-//    @Bean
-//    public PostService postService() {
-//        return new PostService(postRepository());
-//    }
-//
-//    @Bean
-//    public PostRepository postRepository() {
-//        return new JdbcTemplatePostRepository(dataSource);
-//    }
+    @Bean
+    public PostService postService() {
+        return new PostService(postRepository, userRepository);
+    }
 }

@@ -1,17 +1,40 @@
 package community.jessie_community.domain;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "posts")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_id")
     private Long id;
-    private Long userId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     private String title;
     private String content;
+
+    @Column(name = "image_url")
     private String imageUrl;
+
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @Column(name = "like_count")
     private int likeCount;
+
+    @Column(name = "view_count")
     private int viewCount;
+
+    @Column(name = "comment_count")
     private int commentCount;
 
     public Long getId() {
@@ -22,12 +45,12 @@ public class Post {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getTitle() {

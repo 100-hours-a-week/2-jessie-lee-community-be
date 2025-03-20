@@ -1,5 +1,6 @@
 package community.jessie_community.controller;
 
+import community.jessie_community.DTO.PostDTO;
 import community.jessie_community.domain.Post;
 import community.jessie_community.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class PostController {
@@ -25,16 +25,16 @@ public class PostController {
 
     @GetMapping("/posts")
     @ResponseBody
-    public List<Post> postList() {
-        return postService.findPosts();
+    public List<PostDTO> postList() {
+        return postService.findAllPostDTOs();
     }
 
     @GetMapping("/posts/{id}")
-    public ResponseEntity<Post> getPost(@PathVariable("id") Long id) {
-        Optional<Post> post = postService.findOne(id);
-        if (post.isPresent()) {
-            return ResponseEntity.ok(post.get());
-        } else {
+    public ResponseEntity<PostDTO> getPost(@PathVariable Long id) {
+        try{
+            PostDTO onePostDTO = postService.findOnePostDTO(id);
+            return ResponseEntity.ok(onePostDTO);
+        }catch(Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }

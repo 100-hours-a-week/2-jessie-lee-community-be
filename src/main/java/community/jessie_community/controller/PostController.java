@@ -1,7 +1,8 @@
 package community.jessie_community.controller;
 
 import community.jessie_community.DTO.CommentDTO;
-import community.jessie_community.DTO.PostDTO;
+import community.jessie_community.DTO.PostDetailDTO;
+import community.jessie_community.DTO.PostSummaryDTO;
 import community.jessie_community.service.CommentService;
 import community.jessie_community.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +29,14 @@ public class PostController {
 
     @GetMapping("/posts")
     @ResponseBody
-    public List<PostDTO> postList() {
+    public List<PostSummaryDTO> postList() {
         return postService.findAllPostDTOs();
     }
 
     @GetMapping("/posts/{id}")
-    public ResponseEntity<PostDTO> getPost(@PathVariable Long id) {
+    public ResponseEntity<PostDetailDTO> getPost(@PathVariable("id") Long id) {
         try{
-            PostDTO onePostDTO = postService.findOnePostDTO(id);
+            PostDetailDTO onePostDTO = postService.findOnePostDTO(id);
             return ResponseEntity.ok(onePostDTO);
         }catch(Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

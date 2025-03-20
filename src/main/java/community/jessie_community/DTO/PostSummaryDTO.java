@@ -4,13 +4,10 @@ import community.jessie_community.domain.Post;
 
 import java.time.LocalDateTime;
 
-public class PostDTO {
+public class PostSummaryDTO {
     private Long id;
     private String title;
-    private String content;
-    private String imageUrl;
     private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
     private int likeCount;
     private int viewCount;
     private int commentCount;
@@ -33,36 +30,12 @@ public class PostDTO {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public int getLikeCount() {
@@ -105,14 +78,11 @@ public class PostDTO {
         this.userNickname = userNickname;
     }
 
-    public static PostDTO fromEntity(Post post) {
-        PostDTO dto = new PostDTO();
+    public static PostSummaryDTO fromEntity(Post post) {
+        PostSummaryDTO dto = new PostSummaryDTO();
         dto.setId(post.getId());
         dto.setTitle(post.getTitle());
-        dto.setContent(post.getContent());
-        dto.setImageUrl(post.getImageUrl());
         dto.setCreatedAt(post.getCreatedAt());
-        dto.setUpdatedAt(post.getUpdatedAt());
         dto.setLikeCount(post.getLikeCount());
         dto.setViewCount(post.getViewCount());
         dto.setCommentCount(post.getCommentCount());

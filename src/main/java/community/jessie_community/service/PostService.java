@@ -1,8 +1,11 @@
 package community.jessie_community.service;
 
-import community.jessie_community.DTO.PostDTO;
+import community.jessie_community.DTO.PostDetailDTO;
+import community.jessie_community.DTO.PostSummaryDTO;
+import community.jessie_community.domain.Comment;
 import community.jessie_community.domain.Post;
 import community.jessie_community.domain.User;
+import community.jessie_community.repository.CommentRepository;
 import community.jessie_community.repository.PostRepository;
 import community.jessie_community.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,10 +18,12 @@ import java.util.stream.Collectors;
 public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+    private final CommentRepository commentRepository;
 
-    public PostService(PostRepository postRepository, UserRepository userRepository) {
+    public PostService(PostRepository postRepository, UserRepository userRepository, CommentRepository commentRepository) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
+        this.commentRepository = commentRepository;
     }
 
     /**
@@ -35,18 +40,19 @@ public class PostService {
     /**
      * 전체 게시글 조회
      */
-    public List<PostDTO> findAllPostDTOs() {
+    public List<PostSummaryDTO> findAllPostDTOs() {
         List<Post> posts = postRepository.findAll();
         return posts.stream()
-                .map(PostDTO::fromEntity)
+                .map(PostSummaryDTO::fromEntity)
                 .collect(Collectors.toList());
     }
 
     /**
      * id로 게시글 하나 조회
      */
-    public PostDTO findOnePostDTO(Long id) {
+    public PostDetailDTO findOnePostDTO(Long id) {
         Optional<Post> post = postRepository.findById(id);
-        return PostDTO.fromEntity(post.get());
+        List<Comment> comments = commentRepository.findByPostId(id);
+        return PostDetailDTO.fromEntity(post.get(), comments);
     }
 }

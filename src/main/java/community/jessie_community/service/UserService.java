@@ -2,10 +2,12 @@ package community.jessie_community.service;
 
 import community.jessie_community.domain.User;
 import community.jessie_community.repository.UserRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public class UserService {
     private final UserRepository userRepository;
 

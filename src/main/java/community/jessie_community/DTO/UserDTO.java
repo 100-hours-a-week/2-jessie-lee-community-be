@@ -55,7 +55,7 @@ public class UserDTO {
         dto.setEmail(user.getEmail());
         dto.setPassword(user.getPassword());
         dto.setNickname(user.getNickname());
-        dto.setProfile_img_url(user.getProfile_img_url());
+        dto.setProfile_img_url(user.getProfileImgUrl());
 
         return dto;
     }

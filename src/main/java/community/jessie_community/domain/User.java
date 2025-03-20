@@ -10,7 +10,8 @@ public class User {
     private String email;
     private String password;
     private String nickname;
-    private String profile_img_url;
+    @Column(name = "profile_img_url")
+    private String profileImgUrl;
 
     public Long getId() {
         return id;
@@ -44,11 +45,11 @@ public class User {
         this.nickname = nickname;
     }
 
-    public String getProfile_img_url() {
-        return profile_img_url;
+    public String getProfileImgUrl() {
+        return profileImgUrl;
     }
 
-    public void setProfile_img_url(String profile_img_url) {
-        this.profile_img_url = profile_img_url;
+    public void setProfileImgUrl(String profileImgUrl) {
+        this.profileImgUrl = profileImgUrl;
     }
 }

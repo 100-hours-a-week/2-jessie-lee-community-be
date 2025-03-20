@@ -1,6 +1,6 @@
 package community.jessie_community.controller;
 
-import community.jessie_community.domain.User;
+import community.jessie_community.DTO.UserDTO;
 import community.jessie_community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -25,16 +24,16 @@ public class UserController {
 
     @GetMapping("/users")
     @ResponseBody
-    public List<User> usersList() {
-        return userService.findUsers();
+    public List<UserDTO> usersList() {
+        return userService.findUserDTOs();
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<User> getUser(@PathVariable("id") Long id) {
-        Optional<User> user = userService.findOne(id);
-        if (user.isPresent()) {
-            return ResponseEntity.ok(user.get());
-        } else {
+    public ResponseEntity<UserDTO> getUser(@PathVariable("id") Long id) {
+        try{
+            UserDTO oneUserDTO = userService.findOneUserDTO(id);
+            return ResponseEntity.ok(oneUserDTO);
+        }catch(Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }

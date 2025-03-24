@@ -14,6 +14,9 @@ public class PostDetailDTO {
     private String imageUrl;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private int likeCount;
+    private int viewCount;
+    private int commentCount;
     private Long userId;
     private String userNickname;
     private List<CommentDTO> comments;
@@ -66,6 +69,30 @@ public class PostDetailDTO {
         this.updatedAt = updatedAt;
     }
 
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public int getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
+
     public Long getUserId() {
         return userId;
     }
@@ -99,6 +126,9 @@ public class PostDetailDTO {
         dto.setImageUrl(post.getImageUrl());
         dto.setCreatedAt(post.getCreatedAt());
         dto.setUpdatedAt(post.getUpdatedAt());
+        dto.setLikeCount(post.getLikeCount());
+        dto.setViewCount(post.getViewCount());
+        dto.setCommentCount(post.getCommentCount());
 
         if (post.getUser() != null) {
             dto.setUserId(post.getUser().getId());

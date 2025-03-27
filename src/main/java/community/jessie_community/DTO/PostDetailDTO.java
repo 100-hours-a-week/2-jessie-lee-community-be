@@ -15,7 +15,6 @@ public class PostDetailDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private int likeCount;
-    private int viewCount;
     private int commentCount;
     private Long userId;
     private String userNickname;
@@ -77,14 +76,6 @@ public class PostDetailDTO {
         this.likeCount = likeCount;
     }
 
-    public int getViewCount() {
-        return viewCount;
-    }
-
-    public void setViewCount(int viewCount) {
-        this.viewCount = viewCount;
-    }
-
     public int getCommentCount() {
         return commentCount;
     }
@@ -127,7 +118,6 @@ public class PostDetailDTO {
         dto.setCreatedAt(post.getCreatedAt());
         dto.setUpdatedAt(post.getUpdatedAt());
         dto.setLikeCount(post.getLikeCount());
-        dto.setViewCount(post.getViewCount());
         dto.setCommentCount(post.getCommentCount());
 
         if (post.getUser() != null) {

@@ -9,7 +9,6 @@ public class PostSummaryDTO {
     private String title;
     private LocalDateTime createdAt;
     private int likeCount;
-    private int viewCount;
     private int commentCount;
     private Long userId;
     private String userNickname;
@@ -46,14 +45,6 @@ public class PostSummaryDTO {
         this.likeCount = likeCount;
     }
 
-    public int getViewCount() {
-        return viewCount;
-    }
-
-    public void setViewCount(int viewCount) {
-        this.viewCount = viewCount;
-    }
-
     public int getCommentCount() {
         return commentCount;
     }
@@ -84,7 +75,6 @@ public class PostSummaryDTO {
         dto.setTitle(post.getTitle());
         dto.setCreatedAt(post.getCreatedAt());
         dto.setLikeCount(post.getLikeCount());
-        dto.setViewCount(post.getViewCount());
         dto.setCommentCount(post.getCommentCount());
 
         if (post.getUser() != null) {

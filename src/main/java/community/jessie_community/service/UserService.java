@@ -6,6 +6,7 @@ import community.jessie_community.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -43,5 +44,17 @@ public class UserService {
     public UserDTO findOneUserDTO(Long id) {
         Optional<User> user = userRepository.findById(id);
         return UserDTO.fromEntity(user.get());
+    }
+
+    /**
+     * 이메일, 비밀번호로 로그인
+     */
+    public Long login(String email, String password) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if(Objects.equals(userOptional.get().getPassword(), password)) {
+            return userOptional.get().getId();
+        } else {
+            return null;
+        }
     }
 }

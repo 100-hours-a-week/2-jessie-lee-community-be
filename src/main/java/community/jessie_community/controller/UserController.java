@@ -1,6 +1,7 @@
 package community.jessie_community.controller;
 
 import community.jessie_community.DTO.UserDTO;
+import community.jessie_community.DTO.UserLoginDTO;
 import community.jessie_community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,17 @@ public class UserController {
     @ResponseBody
     public List<UserDTO> usersList() {
         return userService.findUserDTOs();
+    }
+
+    @PostMapping("/users/login")
+    @ResponseBody
+    public ResponseEntity<Long> usersList(@RequestBody UserLoginDTO loginDTO) {
+        try{
+            Long userId = userService.login(loginDTO.getEmail(), loginDTO.getPassword());
+            return ResponseEntity.ok(userId);
+        }catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @GetMapping("/users/{id}")

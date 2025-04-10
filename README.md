@@ -2,7 +2,7 @@
 
 ## 프로젝트 설명
 
-- 커뮤니티 서비스를 풀스택으로 구현한 개인 프로젝트입니다. ([BE Repo 보러 가기](https://github.com/100-hours-a-week/2-jessie-lee-community-be))
+- 커뮤니티 서비스를 풀스택으로 구현한 개인 프로젝트입니다. ([FE Repo 보러 가기](https://github.com/100-hours-a-week/2-jessie-lee-community))
 - JDBC Template으로 우선 구현한 후, Spring Data JPA로 마이그레이션 하였습니다.
 
 ### 기술 스택
